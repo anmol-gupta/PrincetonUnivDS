@@ -1,13 +1,12 @@
 import java.util.*;
 
-public class QuickFind {
+public class OuickUnion {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
 		Scanner sc = new Scanner(System.in);
 		int N = sc.nextInt();
-		QuickFindImplementation qf = new QuickFindImplementation(N);
+		QuickUnionImplementation qf = new QuickUnionImplementation(N);
 		while (N-- > 0) {
 			int p = sc.nextInt();
 			int q = sc.nextInt();
@@ -21,30 +20,30 @@ public class QuickFind {
 
 }
 
-class QuickFindImplementation {
+class QuickUnionImplementation {
 	private int[] arr;
 
-	public QuickFindImplementation(int N) {
+	public QuickUnionImplementation(int N) {
 		arr = new int[N];
 		for (int i = 0; i < N; i++) {
 			arr[i] = i;
 		}
 	}
 
+	private int root(int i) {
+		while (i != arr[i]) {
+			i = arr[i];
+		}
+		return i;
+	}
+
 	public boolean connected(int p, int q) {
-		return arr[p] == arr[q];
+		return root(p) == root(q);
 	}
 
 	public void union(int p, int q) {
-		int pidx = arr[p];
-		int qidx = arr[q];
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] == pidx) {
-				arr[i] = qidx;
-			}
-		}
+		int pidx = root(p);
+		int qidx = root(q);
+		arr[pidx] = qidx;
 	}
-
 }
-
-// Time Complexity - O(n2) - Quadratic Time Complexity 

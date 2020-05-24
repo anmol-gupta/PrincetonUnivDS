@@ -46,5 +46,3 @@ class QuickFindImplementation {
 	}
 
 }
-
-// Time Complexity - O(n2) - Quadratic Time Complexity 
